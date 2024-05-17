@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profesjonalne Usługi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+        }
+        header {
+            background-color: #4682b4;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #5f9ea0;
+            padding: 1rem;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .service {
+            margin-bottom: 2rem;
+        }
+        .service h2 {
+            color: #333;
+            cursor: pointer;
+        }
+        .service ul {
+            list-style-type: none;
+            padding: 0;
+            display: none;
+        }
+        .service ul li {
+            background-color: #f9f9f9;
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .service ul li:hover {
+            background-color: #e9e9e9;
+        }
+        .service ul li img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        footer {
+            background-color: #4682b4;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 2rem;
+        }
+        .contact, .booking {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .contact h2, .booking h2 {
+            color: #333;
+        }
+        .contact form, .booking form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .contact form input, .contact form textarea, .booking form input, .booking form select, .booking #card-element {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            width: 80%;
+            max-width: 500px;
+        }
+        .contact form button, .booking form button {
+            padding: 0.5rem 2rem;
+            background-color: #5f9ea0;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .contact form button:hover, .booking form button:hover {
+            background-color: #4682b4;
+        }
+    </style>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <header>
+        <h1>Profesjonalne Usługi</h1>
+    </header>
+    <nav>
+        <a href="#sprzatanie">Sprzątanie</a>
+        <a href="#fryzjerstwo">Fryzjerstwo</a>
+        <a href="#kosmetologia">Kosmetologia</a>
+        <a href="#transport">Transport</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#rezerwacja">Rezerwacja</a>
+    </nav>
+    <div class="container">
+        <div id="sprzatanie" class="service">
+            <h2 onclick="toggleService(this)">Sprzątanie</h2>
+            <ul>
+                <li>Sprzątanie domów - Profesjonalne sprzątanie domów, odkurzanie, mycie okien, czyszczenie dywanów i mebli. Używamy nowoczesnych urządzeń czyszczących.<img src="https://via.placeholder.com/300" alt="Sprzątanie domów"></li>
+                <li>Sprzątanie biur - Utrzymanie czystości w biurach, regularne sprzątanie, dezynfekcja powierzchni, usuwanie odpadów. Dostosowane harmonogramy do pracy biurowej.<img src="https://via.placeholder.com/300" alt="Sprzątanie biur"></li>
+                <li>Sprzątanie po imprezach - Kompleksowe sprzątanie po wydarzeniach i imprezach, usuwanie odpadów, czyszczenie powierzchni.<img src="https://via.placeholder.com/300" alt="Sprzątanie po imprezach"></li>
+            </ul>
+        </div>
+        <div id="fryzjerstwo" class="service">
+            <h2 onclick="toggleService(this)">Fryzjerstwo</h2>
+            <ul>
+                <li>Strzyżenie damskie - Strzyżenie włosów dla kobiet, modelowanie fryzur, porady stylistyczne. Używamy najlepszych produktów do stylizacji.<img src="https://via.placeholder.com/300" alt="Strzyżenie damskie"></li>
+                <li>Strzyżenie męskie - Nowoczesne i klasyczne fryzury dla mężczyzn, trymowanie brody.<img src="https://via.placeholder.com/300" alt="Strzyżenie męskie"></li>
+                <li>Koloryzacja - Farbowanie włosów, balejaż, pasemka, ombre. Pracujemy z profesjonalnymi farbami.<img src="https://via.placeholder.com/300" alt="Koloryzacja"></li>
+            </ul>
+        </div>
+        <div id="kosmetologia" class="service">
+            <h2 onclick="toggleService(this)">Kosmetologia</h2>
+            <ul>
+                <li>Manicure - Profesjonalne zabiegi manicure, pielęgnacja paznokci, stylizacja. Używamy najlepszych lakierów i narzędzi.<img src="https://via.placeholder.com/300" alt="Manicure"></li>
+                <li>Pedicure - Pielęgnacja stóp i paznokci, usuwanie zrogowaceń, masaż stóp. Oferujemy szeroką gamę kolorów lakierów.<img src="https://via.placeholder.com/300" alt="Pedicure"></li>
+                <li>Regulacja brwi - Modelowanie i regulacja brwi, henna. Dostosowujemy kształt brwi do twarzy klienta.<img src="https://via.placeholder.com/300" alt="Regulacja brwi"></li>
+                <li>Dokładanie rzęs - Przedłużanie i zagęszczanie rzęs, różne metody aplikacji. Używamy najwyższej jakości materiałów.<img src="https://via.placeholder.com/300" alt="Dokładanie rzęs"></li>
+                <li>Masaże - Relaksacyjne i lecznicze masaże ciała. Używamy aromaterapii dla pełnego relaksu.<img src="https://via.placeholder.com/300" alt="Masaże"></li>
+                <li>Zabiegi ujędrniające twarz - Zabiegi liftingujące, maski, masaże twarzy. Stosujemy najnowsze techniki.<img src="https://via.placeholder.com/300" alt="Zabiegi ujędrniające twarz"></li>
+                <li>Botoks ust - Iniekcje botoksem w celu wygładzenia zmarszczek i odmłodzenia skóry. Wykonywane przez wykwalifikowanych specjalistów.<img src="https://via.placeholder.com/300" alt="Botoks ust"></li>
+                <li>Powiększanie ust - Zabiegi powiększania ust kwasem hialuronowym. Gwarantujemy naturalne efekty.<img src="https://via.placeholder.com/300" alt="Powiększanie ust"></li>
+            </ul>
+        </div>
+        <div id="transport" class="service">
+            <h2 onclick="toggleService(this)">Transport</h2>
+            <ul>
+                <li>Transport osobowy - Przewóz osób na terenie miasta i okolic. Komfortowe pojazdy, doświadczeni kierowcy.<img src="https://via.placeholder.com/300" alt="Transport osobowy"></li>
+                <li>Transport towarowy - Przewóz towarów, przeprowadzki, dostawy. Bezpieczny transport cennych przedmiotów.<img src="https://via.placeholder.com/300" alt="Transport towarowy"></li>
+                <li>Transport międzynarodowy - Usługi transportu międzynarodowego, przewóz osób i towarów za granicę. Doświadczenie i niezawodność.<img src="https://via.placeholder.com/300" alt="Transport międzynarodowy"></li>
+            </ul>
+        </div>
+    </div>
+    <div id="kontakt" class="contact">
+        <h2>Kontakt</h2>
+        <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST">
+            <input type="text" name="name" placeholder="Twoje imię" required>
+            <input type="email" name="email" placeholder="Twój email" required>
+            <input type="text" name="phone" placeholder="Twój numer telefonu" required>
+            <textarea name="message" placeholder="Twoja wiadomość" rows="4" required></textarea>
+            <button type="submit">Wyślij</button>
+        </form>
+    </div>
+    <div id="rezerwacja" class="booking">
+        <h2>Rezerwacja</h2>
+        <form id="bookingForm">
+            <input type="text" name="name" placeholder="Twoje imię" required>
+            <input type="email" name="email" placeholder="Twój email" required>
+            <input type="text" name="phone" placeholder="Twój numer telefonu" required>
+            <select name="service" required>
+                <option value="">Wybierz usługę</option>
+                <option value="manicure">Manicure</option>
+                <option value="pedicure">Pedicure</option>
+                <option value="brow_shaping">Regulacja brwi</option>
+                <option value="lash_extensions">Dokładanie rzęs</option>
+                <option value="massage">Masaże</option>
+                <option value="face_treatment">Zabiegi ujędrniające twarz</option>
+                <option value="botox">Botoks ust</option>
+                <option value="lip_enhancement">Powiększanie ust</option>
+            </select>
+            <input type="date" name="date" required>
+            <input type="time" name="time" min="08:00" max="18:00" required>
+            <div id="card-element"></div>
+            <button type="submit">Rezerwuj</button>
+        </form>
+    </div>
+    <footer>
+        <p>&copy; 2024 Profesjonalne Usługi. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+    <script>
+        function toggleService(element) {
+            const ul = element.nextElementSibling;
+            ul.style.display = ul.style.display === 'none' ? 'block' : 'none';
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+            
+            fetch('https://formspree.io/f/your-form-id', { // Zastąp 'https://formspree.io/f/your-form-id' odpowiednim URL-em z Formspree
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                alert('Wiadomość została wysłana!');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Wystąpił błąd przy wysyłaniu wiadomości.');
+            });
+        });
+
+        const stripe = Stripe('your-publishable-key'); // Zastąp 'your-publishable-key' swoim kluczem publicznym z Stripe
+        const elements = stripe.elements();
+        const card = elements.create('card');
+        card.mount('#card-element');
+
+        document.getElementById('bookingForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => data[key] = value);
+
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    console.error(result.error.message);
+                } else {
+                    data.token = result.token.id;
+
+                    fetch('https://your-server.com/book-appointment', { // Zastąp 'https://your-server.com/book-appointment' odpowiednim URL-em serwera
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        alert('Rezerwacja została przyjęta!');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        alert('Wystąpił błąd przy rezerwacji.');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
